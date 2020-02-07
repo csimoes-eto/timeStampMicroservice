@@ -26,10 +26,12 @@ app.get("/api/hello", function(req, res) {
 //get timestamp
 app.get("/api/timestamp/:date", function(req, res) {
   var date = new Date(req.params.date);
-  console.log(req.params.date)
-  if (date.toString() == "Invalid Date" && !/\d{1,10}/.match(req.params.date.toString())) {
+  console.log(req.params.date.toString(), (/\d{10}/).test((req.params.date).toString()))
+  if (date.toString() == "Invalid Date" && (/\d{10}/).test((req.params.date).toString()) == false) {
     res.json({ error: "Invalid Date" });
-  } else {
+  } else if((/\d{10}/).test((req.params.date).toString())){
+    res.json({unix: req.params.date, utc: ""});
+  }else {
     res.json({ unix: date.getTime(), utc: date.toUTCString() });
   }
 });
