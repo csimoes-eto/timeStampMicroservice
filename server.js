@@ -26,14 +26,12 @@ app.get("/api/hello", function (req, res) {
 
 //get timestamp
 app.get("/api/timestamp/:date", function (req, res) {
-  var unix; var utcTime;
+  var dateToStamp = new Date(req.params.date);
+  var unix = dateToStamp.getTime();
+  var utcTime = dateToStamp.toUTCString();
   //get timestamp for that moment
-  if(req.params.date == undefined){
-    utcTime = new Date();
-  }
-  console.log(utcTime)
-  
-  
+  console.log(dateToStamp, unix, utcTime)
+    
   //console.log(req.params.date, new Date(req.params.date))
   
   res.json({unix: unix, utc: utcTime})
