@@ -26,19 +26,24 @@ app.get("/api/hello", function(req, res) {
 //get timestamp
 app.get("/api/timestamp/:date", function(req, res) {
   var date = new Date(req.params.date);
-  console.log(req.params.date.toString(), (/\d{10}/).test((req.params.date).toString()))
-  if (date.toString() == "Invalid Date" && (/\d{10}/).test((req.params.date).toString()) == false) {
+  if (
+    date.toString() == "Invalid Date" &&
+    /\d{13}/.test(req.params.date.toString()) == false
+  ) {
     res.json({ error: "Invalid Date" });
-  } else if((/\d{10}/).test((req.params.date).toString())){
-    res.json({unix: req.params.date, utc: ""});
-  }else {
+  } else if (/\d{13}/.test(req.params.date.toString())) {
+    console.log(req.params.date, date)
+    ///not working///////////////
+    res.json({ unix: req.params.date, utc: new Date(req.params.date) });
+    ////////////
+  } else {
     res.json({ unix: date.getTime(), utc: date.toUTCString() });
   }
 });
 
 app.get("/api/timestamp", (req, res) => {
   var date = new Date();
-  res.json({ unix: date.getTime(), utc: date.toUTCString()});
+  res.json({ unix: date.getTime(), utc: date.toUTCString() });
 });
 
 // listen for requests :)
