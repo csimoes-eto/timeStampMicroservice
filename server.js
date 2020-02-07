@@ -26,15 +26,17 @@ app.get("/api/hello", function(req, res) {
 //get timestamp
 app.get("/api/timestamp/:date", function(req, res) {
   var date = new Date(req.params.date);
-  console.log(date)
-  //console.log(date, date.getTime() !== NaN);
-  if (date.getTime() !== NaN) {
+  if (date.toString() == "Invalid Date") {
     res.json({ error: "Invalid Date" });
   } else {
-    var unix = date.getTime();
-    var utcTime = date.toUTCString();
-    res.json({ unix: unix, utc: utcTime });
+    res.json({ unix: date.getTime(), utc: date.toUTCString() });
   }
+});
+
+app.get("/api/timestamp", (req, res) => {
+  var date = new Date(req.params.date);
+  console.log("aa")
+  res.json({ unix: date.getTime(), utc: date.toUTCString() });
 });
 
 // listen for requests :)
