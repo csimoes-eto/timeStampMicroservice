@@ -26,11 +26,18 @@ app.get("/api/hello", function (req, res) {
 
 //get timestamp
 app.get("/api/timestamp/:date", function (req, res) {
+  console.log(new Date(req.params.date))
+  if(new Date(req.params.date) !== Invalid Date)
+
+  ///Get from unix
+  if(typeof req.params.date == Number){
+    res.json({unix: req.params.date, utc: req.params.date.toUTCString()});
+  }
   var dateToStamp = new Date(req.params.date);
   var unix = dateToStamp.getTime();
   var utcTime = dateToStamp.toUTCString();
   //get timestamp for that moment
-  console.log(dateToStamp, unix, utcTime)
+  //console.log(dateToStamp, unix, utcTime)
     
   //console.log(req.params.date, new Date(req.params.date))
   
