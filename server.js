@@ -26,7 +26,8 @@ app.get("/api/hello", function(req, res) {
 //get timestamp
 app.get("/api/timestamp/:date", function(req, res) {
   var date = new Date(req.params.date);
-  if (date.toString() == "Invalid Date") {
+  console.log(req.params.date)
+  if (date.toString() == "Invalid Date" && !/\d{1,10}/.match(req.params.date.toString())) {
     res.json({ error: "Invalid Date" });
   } else {
     res.json({ unix: date.getTime(), utc: date.toUTCString() });
@@ -34,9 +35,8 @@ app.get("/api/timestamp/:date", function(req, res) {
 });
 
 app.get("/api/timestamp", (req, res) => {
-  var date = new Date(req.params.date);
-  console.log("aa")
-  res.json({ unix: date.getTime(), utc: date.toUTCString() });
+  var date = new Date();
+  res.json({ unix: date.getTime(), utc: date.toUTCString()});
 });
 
 // listen for requests :)
