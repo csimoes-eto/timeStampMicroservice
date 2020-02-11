@@ -11,8 +11,8 @@ e.g. `{"unix": 1479663089000 ,"utc": "Sun, 20 Nov 2016 17:31:29 GMT"}`.
 5. If the date string is **invalid** the api returns a JSON having the structure `{"unix": null, "utc" : "Invalid Date" }`.
 
 #### Example usage:
-* https://curse-arrow.hyperdev.space/api/timestamp/2015-12-15
-* https://curse-arrow.hyperdev.space/api/timestamp/1450137600000
+* https://curse-arrow.hyperdev.space/api/timestamp/1991-01-23
+* https://curse-arrow.hyperdev.space/api/timestamp/664588800000
 
 #### Example output:
-* { "unix": 1450137600, "utc": "December 15, 2015" }
+{"unix":664588800000,"utc":"Wed, 23 Jan 1991 00:00:00 GMT"}
