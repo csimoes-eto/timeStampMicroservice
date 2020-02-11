@@ -3,7 +3,7 @@
 ### User stories :
 
 1. The API endpoint is `GET [project_url]/api/timestamp/:date_string?`
-2. A date string is valid if can be successfully parsed by `new Date(date_string)` (JS) . The unix timestamp is an **integer** specifying **milliseconds**. The usage of date strings compliant with ISO-8601 (e.g. `"2016-11-20"`) ensure an UTC timestamp.
+2. A date string is valid if it can be successfully parsed by `new Date(date_string)` (JS) . The unix timestamp is an **integer** specifying **milliseconds**. The usage of date strings compliant with ISO-8601 (e.g. `"2016-11-20"`) ensure an UTC timestamp.
 3. If the date string is **empty** the service uses the current timestamp.
 4. If the date string is **valid** the api returns a JSON having the structure 
 `{"unix": <date.getTime()>, "utc" : <date.toUTCString()> }`
